@@ -43,7 +43,24 @@ php artisan serve
 
 ### Пример запроса на localhost:
 
-GET "http://localhost:8000/api/weather/Moscow"
+
+POST "http://localhost:8000/api/weather"
+
+ - body:
+```
+{
+    "lon": -0.13,
+    "lat": 51.51,
+    "units": "metric"
+}
+
+or
+
+{
+    "city": "London",
+    "units": "metric"
+}
+```
 
  - Accept-Language - заголовок для выбора языка ответа (поддерживаются en, ru)
 
@@ -51,21 +68,28 @@ GET "http://localhost:8000/api/weather/Moscow"
 
 ```
 {
-    "city": "Moscow",
-    "temperature": -1,
-    "condition": "snow",
+    "city": "London",
+    "coordinates": {
+        "lat": 51.5107,
+        "lon": -0.1293
+    },
+    "temperature": {
+        "value": 11.3,
+        "in": "celsius"
+    },
+    "unit": "metric",
+    "condition": "clear sky",
     "wind": {
-        "speed": 7.03,
+        "speed": 4.12,
         "direction": {
-            "degrees": 36,
-            "text": "ne",
-            "cardinal": "northeast"
+            "degrees": 90,
+            "text": "e",
+            "cardinal": "east"
         }
     },
-    "pressure": 755,
-    "humidity": 58,
-    "rain_probability": 10,
-    "icon": "13d",
+    "pressure": 770,
+    "humidity": 52,
+    "icon": "01n",
     "language": "en"
 }
 ```

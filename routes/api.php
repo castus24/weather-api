@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/weather/{city?}', [WeatherController::class, 'getWeather'])->middleware('localization');
+Route::get('/weather', [WeatherController::class, 'getWeather'])->middleware('localization');

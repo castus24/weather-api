@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WeatherRequest;
 use App\Services\WeatherService;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -10,16 +11,12 @@ use Illuminate\Support\Facades\Log;
 
 class WeatherController extends Controller
 {
-    public function __construct(
-        private readonly WeatherService $weatherService
-    )
+    public function getWeather(WeatherRequest $request, WeatherService $weatherService): JsonResponse
     {
-    }
+        $validated = $request->validated();
 
-    public function getWeather(string $city): JsonResponse
-    {
         try {
-            $weatherData = $this->weatherService->getWeatherData($city);
+            $weatherData = $weatherService->getWeatherData($validated);
 
             return response()->json($weatherData);
 
